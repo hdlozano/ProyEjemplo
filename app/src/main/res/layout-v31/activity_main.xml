@@ -27,12 +27,9 @@
         android:layout_width="374dp"
         android:layout_height="49dp"
         android:layout_marginStart="20dp"
-        android:background="@android:color/system_accent1_500"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:hint="Correo"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,12 +40,9 @@
         android:id="@+id/password"
         android:layout_width="374dp"
         android:layout_height="49dp"
-        android:background="@android:color/system_accent1_500"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
         android:textSize="25dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,21 +54,28 @@
         android:id="@+id/ingresar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="48dp"
+        android:backgroundTint="@color/blue_500"
         android:text="Ingresar"
-
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircleRadius="30dp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/Registrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/btnmodifi"
+        android:backgroundTint="@color/blue_500"
+        android:radius = "80dp"
         android:text="Registrar"
-
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ingresar"
-        app:layout_constraintTop_toTopOf="@+id/ingresar" />
+        app:layout_constraintTop_toTopOf="@+id/ingresar"
+        app:strokeColor="#0923A6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
