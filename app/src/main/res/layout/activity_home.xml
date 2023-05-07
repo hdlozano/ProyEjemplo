@@ -15,7 +15,10 @@
         android:background="@color/blue_500"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
@@ -27,7 +30,7 @@
             android:layout_weight="1"
             android:text="User"
             android:textColor="@color/white"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/user_avatar"
@@ -80,9 +83,13 @@
         tools:layout_editor_absoluteY="272dp" />
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:id="@+id/scrollView3"
+        android:layout_width="389dp"
+        android:layout_height="597dp"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_layout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,81 +100,86 @@
                 android:id="@+id/psycology"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/citas"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/citas" />
+
             <TextView
-                android:text="PSICOLOGÍA"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:text="PSICOLOGÍA"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/cultura"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/cultura1"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/cultura1" />
+
             <TextView
-                android:text="CULTURA"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:text="CULTURA"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/deportes"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/deportes"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/deportes" />
+
             <TextView
-                android:text="DEPORTES"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:text="DEPORTES"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/apoyo"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/apoyo"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/apoyo" />
+
             <TextView
-                android:text="APOYO ACADÉMICO"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:text="APOYO ACADÉMICO"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/intercambio"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/intercambio"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/intercambio" />
+
             <TextView
-                android:text="INTERCAMBIO"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:text="INTERCAMBIO"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
