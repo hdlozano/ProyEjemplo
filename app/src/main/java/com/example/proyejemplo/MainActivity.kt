@@ -65,28 +65,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun registro(bundle: Bundle, email: EditText, password: EditText) {
-        if(email.text.isNotEmpty()&& password.text.isNotEmpty()) {
-            if (email.text.contains("@jdc.edu.co")){
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                email.text.toString(),
-                password.text.toString()
-            ).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    showMesageSuccessfu()
-                } else {
-                   msn = "Se ha producido un error al intentar crear el usuario"
-                    showMesageFail(msn)
-                }
-            }
-            }else{
-                msn = "El correo con el que se puede registrar es unicamente de la JDC"
-                showMesageFail(msn)
-            }
-
-        }else{
-            msn="Debe digitar todos los campos"
-            showMesageFail(msn)
-        }
+        val intentRegistro = Intent(this, Registro::class.java)
+        startActivity(intentRegistro)
     }
 
     private fun showMesageFail(msn: String) {
