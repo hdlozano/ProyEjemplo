@@ -12,6 +12,9 @@
         android:theme="@style/Theme.ProyEjemplo"
         tools:targetApi="31">
         <activity
+            android:name=".Registro"
+            android:exported="false" />
+        <activity
             android:name=".Psicology"
             android:exported="false" />
         <activity
