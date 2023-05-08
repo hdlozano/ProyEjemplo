@@ -22,7 +22,7 @@
 
 
         <TextView
-            android:id="@+id/user_name"
+            android:id="@+id/user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -36,7 +36,7 @@
             android:id="@+id/user_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/img"/>
+            android:src="@drawable/img" />
 
     </LinearLayout>
 
@@ -49,7 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_layout">
+        >
 
         <Button
             android:id="@+id/Inicio"
@@ -83,21 +83,16 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="left"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="272dp" />
-
     <LinearLayout
         android:id="@+id/linear_layout"
         android:layout_width="402dp"
         android:layout_height="588dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="84dp">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/user_layout"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
