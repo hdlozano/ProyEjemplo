@@ -2,8 +2,9 @@
     <string name="app_name">Binestar</string>
 
     <string-array name="profetions">
-        <item>Selecione su profesion</item>
+        <item>Seleccione una opcion </item>
         <item>Estudiante</item>
+        <item>Docente</item>
         <item>Psicologo</item>
     </string-array>
 </resources>

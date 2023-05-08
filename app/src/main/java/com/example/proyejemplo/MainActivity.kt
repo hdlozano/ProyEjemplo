@@ -1,5 +1,6 @@
 package com.example.proyejemplo
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     var msn =""
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,8 +25,9 @@ class MainActivity : AppCompatActivity() {
         bundle.putString("password",password.toString())
 
         btnRegistrar.setOnClickListener(){
-            registro(bundle, email, password);
+            registUser();
         }
+
         btnIngresar.setOnClickListener(){
             ingresar(bundle,email, password)
         }
@@ -64,9 +67,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun registro(bundle: Bundle, email: EditText, password: EditText) {
-        val intentRegistro = Intent(this, Registro::class.java)
-        startActivity(intentRegistro)
+    private fun registUser() {
+        val intentRegistroU = Intent(this, Register::class.java)
+        startActivity(intentRegistroU)
     }
 
     private fun showMesageFail(msn: String) {
