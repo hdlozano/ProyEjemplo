@@ -48,23 +48,28 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_layout">
 
         <Button
             android:id="@+id/Inicio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/btnmodifi"
             android:text="Inicio"
-            android:background="@drawable/btnmodifi"/>
+            android:elevation="8dp"
+            android:stateListAnimator="@drawable/btn_personalizado"/>
 
         <Button
             android:id="@+id/Noticias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/btnmodifi"
             android:text="Noticias"
-            android:background="@drawable/btnmodifi"/>
+            android:elevation="8dp"
+            android:stateListAnimator="@drawable/btn_personalizado"/>
 
         <Button
             android:id="@+id/logout"
@@ -72,7 +77,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Salir"
-            android:background="@drawable/btnmodifi"/>
+            android:background="@drawable/btnmodifi"
+            android:elevation="8dp"
+            android:stateListAnimator="@drawable/btn_personalizado"/>
+
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Barrier
@@ -82,14 +90,136 @@
         tools:layout_editor_absoluteX="130dp"
         tools:layout_editor_absoluteY="272dp" />
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="389dp"
-        android:layout_height="597dp"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_layout">
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="402dp"
+        android:layout_height="588dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="84dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/psycology"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ADD8E6"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="PSICOLOGÍA"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/cultura"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ADD8E6"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="CULTURA"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/deportes"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ADD8E6"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="DEPORTES"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/apoyo"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ADD8E6"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:text="APOYO ACADEMICO"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,92 +227,27 @@
             android:orientation="vertical">
 
             <ImageButton
-                android:id="@+id/psycology"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/citas" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
-                android:text="PSICOLOGÍA"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/cultura"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/cultura1" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
-                android:text="CULTURA"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/deportes"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/deportes" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
-                android:text="DEPORTES"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageButton
-                android:id="@+id/apoyo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/apoyo" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
-                android:text="APOYO ACADÉMICO"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageButton
                 android:id="@+id/intercambio"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
+                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/intercambio" />
+                android:src="@drawable/img_5" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
+                android:layout_weight="1"
+                android:background="#ADD8E6"
+                android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:text="INTERCAMBIO"
                 android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
 
 
 
