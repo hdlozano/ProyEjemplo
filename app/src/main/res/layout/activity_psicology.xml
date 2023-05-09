@@ -50,16 +50,25 @@
 
         <Button
             android:id="@+id/Inicio"
+            android:background="@drawable/btnmodifi"
+            android:backgroundTint="@color/blue_500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:text="Inicio" />
 
         <Button
             android:id="@+id/Noticias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTintMode="src_over"
+            android:backgroundTint="@color/blue_500"
+            android:background="@drawable/btnmodifi"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:text="Noticias" />
 
         <Button
@@ -67,8 +76,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:background="@drawable/btnmodifi"
             android:text="Salir" />
     </LinearLayout>
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -101,12 +114,12 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toEndOf="@+id/citas"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/reserva_1" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/citas"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_marginStart="44dp"
@@ -120,10 +133,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Solicita tu cita"
-        android:textStyle="bold"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/citas"
+        app:layout_constraintTop_toBottomOf="@+id/citas" />
 
     <TextView
         android:id="@+id/textView2"

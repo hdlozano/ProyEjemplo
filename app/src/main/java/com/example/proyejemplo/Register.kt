@@ -2,10 +2,12 @@ package com.example.proyejemplo
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.core.view.get
 import com.example.proyejemplo.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +19,8 @@ class Register : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
+
 
         val nombre : EditText = findViewById(R.id.nombre)
         val identi : EditText= findViewById(R.id.cc)

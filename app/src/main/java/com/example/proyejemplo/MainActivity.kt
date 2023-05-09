@@ -2,12 +2,14 @@ package com.example.proyejemplo
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.example.proyejemplo.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -22,9 +24,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
         val btnRegistrar: Button=findViewById(R.id.Registrar)
         val btnIngresar : Button = findViewById(R.id.ingresar)
+        btnIngresar.backgroundTintList=colorStateList
+        btnRegistrar.backgroundTintList = colorStateList
         val email : EditText=findViewById(R.id.email)
         val password : EditText = findViewById(R.id.password)
         val bundle = Bundle()

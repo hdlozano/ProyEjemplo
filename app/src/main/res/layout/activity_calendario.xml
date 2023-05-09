@@ -49,16 +49,25 @@
 
         <Button
             android:id="@+id/Inicio"
+            android:background="@drawable/btnmodifi"
+            android:backgroundTint="@color/blue_500"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:text="Inicio" />
 
         <Button
             android:id="@+id/Noticias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTintMode="src_over"
+            android:backgroundTint="@color/blue_500"
+            android:background="@drawable/btnmodifi"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:text="Noticias" />
 
         <Button
@@ -66,17 +75,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:background="@drawable/btnmodifi"
             android:text="Salir" />
     </LinearLayout>
 
     <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="595dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="401dp"
+        android:layout_height="529dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_layout"
-        android:background="@color/white">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:id="@+id/layaut1"
@@ -84,6 +99,33 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="364dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="323dp"
+        android:layout_marginBottom="7dp"
+        android:text="PSICOLOGO:"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
