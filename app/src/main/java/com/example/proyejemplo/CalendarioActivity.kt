@@ -16,7 +16,7 @@ class CalendarioActivity : AppCompatActivity() {
         val layautVertical : LinearLayout = findViewById(R.id.layaut1)
         val ref = db.getReference("Citas")
 
-        
+
 
     }
 }
