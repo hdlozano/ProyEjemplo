@@ -18,15 +18,44 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.example.proyejemplo.model.Cita
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
 class DispoCitas : AppCompatActivity() {
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dispo_citas)
+        val user : TextView = findViewById(R.id.user)
+
+        var idCita = "1"
+        val database = Firebase.database.reference
+        val citasRef = database.child("Citas")
+        citasRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (citaSnapshot in dataSnapshot.children) {
+                     idCita = citaSnapshot.key.toString()
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Manejar el error
+            }
+        })
+
         val bundle = intent.extras
+        if (bundle!=null){
+            user.text = bundle.getString("nombre")
+        }
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
         val btnInicio : Button = findViewById(R.id.Inicio)
         val btnLogout : Button = findViewById(R.id.logout)
@@ -39,20 +68,37 @@ class DispoCitas : AppCompatActivity() {
         val btnSave : ImageButton = findViewById(R.id.salvar)
         val scrollView :ScrollView = findViewById(R.id.listaCitas)
         val layout : LinearLayout = findViewById(R.id.layautCitas)
+
         btnMas.setOnClickListener(){
             showDateTimePickerDialog(this){date ->
 
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 val dateTimeString = dateFormat.format(date.time)
-                val cita = Cita(dateTimeString,bundle?.getString("idnti").toString(),dateTimeString.toString(),true,"")
+                val cita = Cita(dateTimeString,bundle?.getString("identi").toString(),dateTimeString.toString(),true,"")
                 citas.add(cita)
                 showCitas(citas,scrollView,layout)
                 Toast.makeText(this,"Cita disponible",Toast.LENGTH_LONG).show()
             }
         }
+        btnSave.setOnClickListener(){
+            saveCitas(citas, idCita)
+
+        }
 
 
 
+    }
+
+    private fun saveCitas(citas: MutableList<Cita>, idCita: String) {
+        var idCitaN = idCita.toString().toInt()
+        val db = FirebaseDatabase.getInstance()
+        val refCitas = db.getReference("Citas")
+        for (cita : Cita in citas){
+            cita.seId(idCitaN.toString())
+            refCitas.child(cita.id).setValue(cita)
+            idCitaN++
+        }
+        Toast.makeText(this,"Diponibilidad guardada",Toast.LENGTH_SHORT).show()
     }
 
     private fun showCitas(citas: MutableList<Cita>, scrollView: ScrollView, layout: LinearLayout) {

@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         if (user1.profesion.equals("Psicólogo")) {
             val intentDefCalendarioActivity = Intent(this,DefCalendarPsico::class.java)
             bundle.putString("nombre",user1.nombre)
-            bundle.putInt("identi",user1.id)
+            bundle.putString("identi",user1.id.toString())
             bundle.putString("email",user1.email)
             intentDefCalendarioActivity.putExtras(bundle)
             startActivity(intentDefCalendarioActivity)

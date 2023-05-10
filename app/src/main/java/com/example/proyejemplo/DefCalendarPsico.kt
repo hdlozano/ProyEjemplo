@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -20,6 +21,10 @@ class DefCalendarPsico : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_def_calendar_psico)
         val bundle = intent.extras
+        val user: TextView = findViewById(R.id.user)
+        if (bundle!=null){
+            user.setText(bundle.getString("nombre"))
+        }
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
         val btnInicio : Button = findViewById(R.id.Inicio)
         val btnLogout : Button = findViewById(R.id.logout)
