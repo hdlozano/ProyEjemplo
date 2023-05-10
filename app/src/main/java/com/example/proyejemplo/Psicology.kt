@@ -13,6 +13,7 @@ class Psicology : AppCompatActivity() {
     @SuppressLint("WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val bundle = intent.extras
         setContentView(R.layout.activity_psicology)
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
         val btnInicio : Button = findViewById(R.id.Inicio)

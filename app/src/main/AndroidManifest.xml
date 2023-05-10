@@ -12,6 +12,14 @@
         android:theme="@style/Theme.ProyEjemplo"
         tools:targetApi="31">
         <activity
+            android:name=".DispoCitas"
+            android:exported="false"
+            android:label="@string/title_activity_dispo_citas"
+            android:theme="@style/Theme.ProyEjemplo.NoActionBar" />
+        <activity
+            android:name=".DefCalendarPsico"
+            android:exported="false" />
+        <activity
             android:name=".CalendarioActivity"
             android:exported="false" />
         <activity
