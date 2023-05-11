@@ -72,7 +72,7 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         })
 
-        var citas = ArrayList<Cita>()
+        val citas = ArrayList<Cita>()
         val reference = FirebaseDatabase.getInstance()
         query = reference.reference.child("Citas").orderByChild("disponible")
         query.addListenerForSingleValueEvent(object : ValueEventListener {

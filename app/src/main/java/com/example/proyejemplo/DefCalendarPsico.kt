@@ -34,12 +34,23 @@ class DefCalendarPsico : AppCompatActivity() {
         btnNotice.backgroundTintList=colorStateList
 
         val btnCita : ImageView = findViewById(R.id.citas)
+        val btnCitasPro : ImageView = findViewById(R.id.citasProg)
+
         btnCita.setOnClickListener(){
             val intentDispoCitas = Intent(this, DispoCitas::class.java)
             if (bundle != null) {
                 intentDispoCitas.putExtras(bundle)
             }
             startActivity(intentDispoCitas)
+        }
+
+        btnCitasPro.setOnClickListener(){
+            val intentDispoCitas = Intent(this, CitasProg::class.java)
+            if (bundle != null) {
+                intentDispoCitas.putExtras(bundle)
+            }
+            startActivity(intentDispoCitas)
+
         }
 
 

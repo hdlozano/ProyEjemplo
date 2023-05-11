@@ -45,7 +45,7 @@ class DispoCitas : AppCompatActivity() {
                 for (citaSnapshot in dataSnapshot.children) {
                     idCita = citaSnapshot.key.toString().toInt()+1
                 }
-                showMesageSuccessfu("bd id: $idCita")
+               // showMesageSuccessfu("bd id: $idCita")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

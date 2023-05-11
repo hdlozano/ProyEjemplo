@@ -105,6 +105,8 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("nombre",user1.nombre)
             bundle.putString("identi",user1.id.toString())
             bundle.putString("email",user1.email)
+            bundle.putString("contrasena",user1.contraseña)
+            bundle.putString("profesion", user1.profesion)
             intentDefCalendarioActivity.putExtras(bundle)
             startActivity(intentDefCalendarioActivity)
 
@@ -116,6 +118,8 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("nombre",user1.nombre)
             bundle.putString("identi",user1.id.toString())
             bundle.putString("email",user1.email)
+            bundle.putString("contrasena",user1.contraseña)
+            bundle.putString("profesion", user1.profesion)
             intentHome.putExtras(bundle)
             startActivity(intentHome)
         }

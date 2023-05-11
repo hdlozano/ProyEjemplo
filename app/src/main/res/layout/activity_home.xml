@@ -107,6 +107,7 @@
 
         <ImageButton
             android:id="@+id/Psicol"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/psicologia_64"
@@ -131,6 +132,7 @@
             android:id="@+id/inclu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             app:srcCompat="@drawable/amor"
             tools:layout_editor_absoluteX="90dp"
             tools:layout_editor_absoluteY="472dp" />
@@ -149,6 +151,7 @@
 
         <ImageButton
             android:id="@+id/Culture"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/cumbia_64"
@@ -224,6 +227,7 @@
 
         <ImageButton
             android:id="@+id/ayud"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ayuda_64"
@@ -244,6 +248,7 @@
 
         <ImageButton
             android:id="@+id/alojami"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/alojamiento_64"
@@ -277,6 +282,7 @@
 
         <ImageButton
             android:id="@+id/Deport"
+            android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/deportes_con_balones_64"

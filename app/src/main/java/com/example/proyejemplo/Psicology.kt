@@ -31,9 +31,18 @@ class Psicology : AppCompatActivity() {
         btnNotice.backgroundTintList=colorStateList
 
         val btnCitas : ImageView = findViewById(R.id.citas)
+        val btnCitasProg : ImageView = findViewById(R.id.citasProg)
 
         btnCitas.setOnClickListener(){
             val intetCalendar = Intent(this, CalendarioActivity::class.java)
+            if (bundle != null) {
+                intetCalendar.putExtras(bundle)
+            }
+            startActivity(intetCalendar)
+        }
+
+        btnCitasProg.setOnClickListener(){
+            val intetCalendar = Intent(this, CitasProg::class.java)
             if (bundle != null) {
                 intetCalendar.putExtras(bundle)
             }
