@@ -95,9 +95,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun verifiRol(user1: Usuario, bundle: Bundle) {
+        var user = user1.email.toString()
+        val indice = user.indexOf('@')
+        user = user.substring(0, indice) // "usuario"
 
         if (user1.profesion.equals("Psicólogo")) {
             val intentDefCalendarioActivity = Intent(this,DefCalendarPsico::class.java)
+            bundle.putString("user", user)
             bundle.putString("nombre",user1.nombre)
             bundle.putString("identi",user1.id.toString())
             bundle.putString("email",user1.email)
@@ -108,11 +112,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             //Toast.makeText(this, user1.nombre, Toast.LENGTH_LONG).show()
             val intentHome = Intent(this, HomeActivity::class.java)
-            //intentHome.putExtra("User",user1)
-            var user = user1.email.toString()
-            val indice = user.indexOf('@')
-            user = user.substring(0, indice) // "usuario"
             bundle.putString("user", user)
+            bundle.putString("nombre",user1.nombre)
+            bundle.putString("identi",user1.id.toString())
+            bundle.putString("email",user1.email)
             intentHome.putExtras(bundle)
             startActivity(intentHome)
         }

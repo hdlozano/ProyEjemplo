@@ -23,7 +23,7 @@ class DefCalendarPsico : AppCompatActivity() {
         val bundle = intent.extras
         val user: TextView = findViewById(R.id.user)
         if (bundle!=null){
-            user.setText(bundle.getString("nombre"))
+            user.setText("Bienvenido ${bundle.getString("user")}")
         }
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
         val btnInicio : Button = findViewById(R.id.Inicio)

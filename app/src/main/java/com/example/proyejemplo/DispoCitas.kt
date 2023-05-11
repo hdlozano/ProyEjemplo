@@ -111,7 +111,7 @@ class DispoCitas : AppCompatActivity() {
             linearLayout.orientation = LinearLayout.HORIZONTAL
 
             val textView = TextView(this)
-            textView.text= "Diponible: ${cita.fechaHora}"
+            textView.text= "Cita # ${cita.id} \n Diponible: ${cita.fechaHora}"
             textView.textSize = 20F
             textView.setTextColor(ContextCompat.getColor(this, R.color.white))
             linearLayout.addView(textView)

@@ -1,5 +1,7 @@
 package com.example.proyejemplo.model
 
+import android.graphics.Bitmap
+
 class Usuario(var nombre: String, var id: Int, var email: String, var contraseña: String,  var profesion: String) {
 
     /*// Getters

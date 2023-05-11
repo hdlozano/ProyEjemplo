@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
             user.setText("Bienvenido ${bundle.getString("user")}")
         }
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
-        val btnPsicology: ImageButton = findViewById(R.id.psycology)
+        val btnPsicology: ImageButton = findViewById(R.id.Psicol)
         val btnInicio : Button = findViewById(R.id.Inicio)
         val btnLogout : Button = findViewById(R.id.logout)
         val btnNotice : Button = findViewById(R.id.Noticias)
@@ -36,10 +36,14 @@ class HomeActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             val intentMain = Intent(this,MainActivity::class.java)
             intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
             startActivity(intentMain)
         }
 
         btnInicio.setOnClickListener(){
+
 
         }
         btnPsicology.setOnClickListener(){
