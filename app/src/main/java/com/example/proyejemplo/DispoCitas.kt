@@ -16,6 +16,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import com.example.proyejemplo.model.Cita
 import com.google.firebase.database.DataSnapshot
@@ -35,23 +36,23 @@ class DispoCitas : AppCompatActivity() {
         setContentView(R.layout.activity_dispo_citas)
         val user : TextView = findViewById(R.id.user)
 
-        var idCita = "1"
+        var idCita = 1
         val database = Firebase.database.reference
         val citasRef = database.child("Citas")
         citasRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (citaSnapshot in dataSnapshot.children) {
-                     idCita = citaSnapshot.key.toString()
-
+                    idCita = citaSnapshot.key.toString().toInt()+1
                 }
+                showMesageSuccessfu("bd id: $idCita")
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Manejar el error
             }
         })
-
+        //Toast.makeText(this,"en esta val la bd $idCita",Toast.LENGTH_LONG)
         val bundle = intent.extras
         if (bundle!=null){
             user.text = bundle.getString("nombre")
@@ -74,9 +75,10 @@ class DispoCitas : AppCompatActivity() {
 
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 val dateTimeString = dateFormat.format(date.time)
-                val cita = Cita(dateTimeString,bundle?.getString("identi").toString(),dateTimeString.toString(),true,"")
+                val cita = Cita(idCita.toString(),bundle?.getString("identi").toString(),dateTimeString.toString(),true,"")
                 citas.add(cita)
                 showCitas(citas,scrollView,layout)
+                idCita++
                 Toast.makeText(this,"Cita disponible",Toast.LENGTH_LONG).show()
             }
         }
@@ -89,14 +91,12 @@ class DispoCitas : AppCompatActivity() {
 
     }
 
-    private fun saveCitas(citas: MutableList<Cita>, idCita: String) {
-        var idCitaN = idCita.toString().toInt()
+    private fun saveCitas(citas: MutableList<Cita>, idCita: Int) {
+
         val db = FirebaseDatabase.getInstance()
         val refCitas = db.getReference("Citas")
         for (cita : Cita in citas){
-            cita.seId(idCitaN.toString())
             refCitas.child(cita.id).setValue(cita)
-            idCitaN++
         }
         Toast.makeText(this,"Diponibilidad guardada",Toast.LENGTH_SHORT).show()
     }
@@ -104,7 +104,7 @@ class DispoCitas : AppCompatActivity() {
     private fun showCitas(citas: MutableList<Cita>, scrollView: ScrollView, layout: LinearLayout) {
         layout.removeAllViews()
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
-        val index =0;
+        var index =0;
         for (cita: Cita in citas){
             val cardView = CardView(this)
             val linearLayout = LinearLayout(this)
@@ -118,8 +118,10 @@ class DispoCitas : AppCompatActivity() {
             val iconX = ImageButton(this)
             iconX.setImageResource(R.drawable.botonx_32)
             iconX.backgroundTintList = colorStateList
+            iconX.id = index
             iconX.setOnClickListener(){
-                eliminarDiponibilidad(index, citas, scrollView,layout);
+                val indexid = it.id
+                eliminarDiponibilidad(indexid, citas, scrollView,layout);
             }
 
             linearLayout.addView(iconX)
@@ -149,7 +151,7 @@ class DispoCitas : AppCompatActivity() {
             layoutParams.setMargins(10,10,10,10)
             cardView.layoutParams = layoutParams
             layout.addView(cardView)
-            index + 1
+            index++
         }
     }
 
@@ -201,4 +203,12 @@ class DispoCitas : AppCompatActivity() {
         datePickerDialog.show()
     }
 
+    private fun showMesageSuccessfu(msn: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Registro Exitoso")
+        builder.setMessage(msn)
+        builder.setPositiveButton("Aceptar",null)
+        val dialog : AlertDialog = builder.create()
+        dialog.show()
+    }
 }
