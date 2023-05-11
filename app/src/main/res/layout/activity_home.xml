@@ -228,5 +228,75 @@
         app:layout_constraintStart_toStartOf="@+id/ayuda"
         app:layout_constraintTop_toTopOf="@+id/ayuda" />
 
+    <view
+        android:id="@+id/alojamiento"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="88dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cultura">
+
+        <ImageButton
+            android:id="@+id/alojami"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/alojamiento_64"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="472dp" />
+    </view>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="ALOJAMIENTO"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/alojamiento"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="@+id/alojamiento"
+        app:layout_constraintTop_toTopOf="@+id/alojamiento" />
+
+    <view
+        android:id="@+id/inclusion"
+        class="androidx.appcompat.widget.ActionMenuView"
+        android:layout_width="88dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintBottom_toBottomOf="@+id/alojamiento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/deportes"
+        app:layout_constraintTop_toBottomOf="@+id/deportes"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/inclu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/amor"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="472dp" />
+    </view>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="INCLUSIÓN"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/inclusion"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="@+id/inclusion"
+        app:layout_constraintTop_toTopOf="@+id/inclusion" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
