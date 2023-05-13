@@ -33,7 +33,7 @@ class CitasProg : AppCompatActivity() {
         val bundle = intent.extras
         val user: TextView = findViewById(R.id.user)
         if (bundle != null) {
-            user.setText("Bienvenido ${bundle.getString("user")}")
+            user.setText("Bienvenido\n ${bundle.getString("nombre")}")
             userS = Usuario(bundle.getString("nombre")?:"",bundle.getString("identi").toString().toInt(),bundle.getString("email")?:"",bundle.getString("contrseña")?:"",bundle.getString("profesion")?:"")
             idUser = bundle.getString("identi").toString().toInt()
         }
@@ -132,10 +132,10 @@ class CitasProg : AppCompatActivity() {
             if(userS.profesion.equals("Psicólogo")){
                 val nombreUsuario = usuarios.filter { it.id == cita.idEstudiante.toString().toInt() }
 
-                textView.text= "# ${cita.id} \n Diponible: ${cita.fechaHora} \n con el estudiante ${nombreUsuario.get(0).nombre}"
+                textView.text= "# ${cita.id} \n Diponible: ${cita.fechaHora} \n Con el estudiante:\n ${nombreUsuario.get(0).nombre}"
             }else{
                 val nombreUsuario = usuarios.filter { it.id == cita.idPsicologo.toString().toInt() }
-                textView.text= "# ${cita.id} \n Programada: ${cita.fechaHora} \n Con el doctor ${nombreUsuario.get(0).nombre}"
+                textView.text= "# ${cita.id} \n Programada: ${cita.fechaHora} \n Con el doctor:\n ${nombreUsuario.get(0).nombre}"
             }
 
             textView.textSize = 20F
