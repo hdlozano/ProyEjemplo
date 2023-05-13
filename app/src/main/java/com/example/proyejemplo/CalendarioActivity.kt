@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.proyejemplo.model.Cita
 import com.example.proyejemplo.model.Usuario
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -48,6 +49,16 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         btnInicio.backgroundTintList=colorStateList
         btnLogout.backgroundTintList=colorStateList
         btnNotice.backgroundTintList=colorStateList
+
+        btnLogout.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,MainActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
 
         val spinerPsicologos : Spinner = findViewById(R.id.spinner)
 
