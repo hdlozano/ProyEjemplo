@@ -182,7 +182,7 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         refCitas.child(citaUpdate.id).setValue(citaUpdate)
         Toast.makeText(this,"Cita registrada con exito",Toast.LENGTH_LONG).show()
         recreate()
-        //startActivity(intentPsicology)
+        startActivity(intentPsicology)
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

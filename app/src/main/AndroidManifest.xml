@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ProyEjemplo"
         tools:targetApi="31">
         <activity
+            android:name=".CitasProg1"
+            android:exported="false" />
+        <activity
             android:name=".CitasProg"
             android:exported="false" />
         <activity
