@@ -66,7 +66,7 @@ class CitasProg : AppCompatActivity() {
                         usuarios.add(usuario)
                     }
                 }
-                carcarCitas(usuarios, layautVertical)
+                cargarCitas(usuarios, layautVertical)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -76,7 +76,7 @@ class CitasProg : AppCompatActivity() {
         //showCitas(citas as MutableLis,scrollView,layautVertical, citas, usuarios)
     }
 
-    private fun carcarCitas(usuarios: ArrayList<Usuario>, layautVertical: LinearLayout) {
+    private fun cargarCitas(usuarios: ArrayList<Usuario>, layautVertical: LinearLayout) {
         val citas = ArrayList<Cita>()
         val query = Firebase.database.reference.child("Citas")
         query.addListenerForSingleValueEvent(object : ValueEventListener{
