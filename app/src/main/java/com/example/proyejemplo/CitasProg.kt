@@ -121,69 +121,81 @@ class CitasProg : AppCompatActivity() {
         //showMesageSuccessfu("Numero de citas ${citasFiltradas.size}")
         val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
         var index =0;
-        for (cita: Cita in citasFiltradas){
+        if (!citasFiltradas.isEmpty()) {
+            for (cita: Cita in citasFiltradas) {
 
-            val cardView = CardView(this)
-            val linearLayout = LinearLayout(this)
-            linearLayout.orientation = LinearLayout.HORIZONTAL
+                val cardView = CardView(this)
+                val linearLayout = LinearLayout(this)
+                linearLayout.orientation = LinearLayout.HORIZONTAL
 
-            val textView = TextView(this)
+                val textView = TextView(this)
 
-            if(userS.profesion.equals("Psicólogo")){
-                val nombreUsuario = usuarios.filter { it.id == cita.idEstudiante.toString().toInt() }
+                if (userS.profesion.equals("Psicólogo")) {
+                    val nombreUsuario =
+                        usuarios.filter { it.id == cita.idEstudiante.toString().toInt() }
 
-                textView.text= "# ${cita.id} \n Diponible: ${cita.fechaHora} \n Con el estudiante:\n ${nombreUsuario.get(0).nombre}"
-            }else{
-                val nombreUsuario = usuarios.filter { it.id == cita.idPsicologo.toString().toInt() }
-                textView.text= "# ${cita.id} \n Programada: ${cita.fechaHora} \n Con el doctor:\n ${nombreUsuario.get(0).nombre}"
+                    textView.text =
+                        "# ${cita.id} \n Diponible: ${cita.fechaHora} \n Con el estudiante:\n ${
+                            nombreUsuario.get(0).nombre
+                        }"
+                } else {
+                    val nombreUsuario =
+                        usuarios.filter { it.id == cita.idPsicologo.toString().toInt() }
+                    textView.text =
+                        "# ${cita.id} \n Programada: ${cita.fechaHora} \n Con el doctor:\n ${
+                            nombreUsuario.get(0).nombre
+                        }"
+                }
+
+                textView.textSize = 20F
+                textView.setTextColor(ContextCompat.getColor(this, R.color.white))
+                linearLayout.addView(textView)
+                val iconX = ImageButton(this)
+                iconX.setImageResource(R.drawable.cheque_32)
+                iconX.backgroundTintList = colorStateList
+                iconX.id = cita.id.toString().toInt()
+                iconX.setOnClickListener() {
+                    val indexid = it.id
+                    //registrarCita(indexid, citas, scrollView,layout);
+                }
+
+                linearLayout.addView(iconX)
+                val layoutParams1 = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+                textView.layoutParams = layoutParams1
+                iconX.layoutParams = layoutParams1
+
+                // Establecer layout_weight del TextView mayor que el del ImageButton
+                textView.layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1f
+                )
+
+                linearLayout.gravity = Gravity.FILL_HORIZONTAL
+
+                cardView.addView(linearLayout)
+                cardView.backgroundTintList = colorStateList
+                cardView.radius = 20F
+                val layoutParams = ViewGroup.MarginLayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                layoutParams.setMargins(10, 10, 10, 10)
+                cardView.layoutParams = layoutParams
+                layout.addView(cardView)
+                index++
             }
-
-            textView.textSize = 20F
-            textView.setTextColor(ContextCompat.getColor(this, R.color.white))
-            linearLayout.addView(textView)
-            val iconX = ImageButton(this)
-            iconX.setImageResource(R.drawable.cheque_32)
-            iconX.backgroundTintList = colorStateList
-            iconX.id = cita.id.toString().toInt()
-            iconX.setOnClickListener(){
-                val indexid = it.id
-               //registrarCita(indexid, citas, scrollView,layout);
-            }
-
-            linearLayout.addView(iconX)
-            val layoutParams1 = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            textView.layoutParams = layoutParams1
-            iconX.layoutParams = layoutParams1
-
-            // Establecer layout_weight del TextView mayor que el del ImageButton
-            textView.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                1f
-            )
-
-            linearLayout.gravity = Gravity.FILL_HORIZONTAL
-
-            cardView.addView(linearLayout)
-            cardView.backgroundTintList = colorStateList
-            cardView.radius= 20F
-            val layoutParams = ViewGroup.MarginLayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            layoutParams.setMargins(10,10,10,10)
-            cardView.layoutParams = layoutParams
-            layout.addView(cardView)
-            index++
+        }else{
+            showMesageSuccessfu("No tiene citas programadas")
         }
     }
 
     private fun showMesageSuccessfu(msn: String) {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Registro Exitoso")
+        builder.setTitle("Citas")
         builder.setMessage(msn)
         builder.setPositiveButton("Aceptar",null)
         val dialog : AlertDialog = builder.create()

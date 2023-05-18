@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,7 @@ import com.google.firebase.ktx.Firebase
 class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private val db = FirebaseDatabase.getInstance()
     var idUser : Int = 0
-    val intentPsicology = Intent(this, Psicology::class.java)
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -112,7 +111,7 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 val idpsicologo = psicologos.filter { it.nombre.equals(selectedItem) }
                 val citasFiltradas = citas.filter { it.idPsicologo.equals(idpsicologo.get(0).id.toString()) }
 
-                showCitas(citasFiltradas as MutableList<Cita>,scrollView,layautVertical)
+                showCitas(citasFiltradas as MutableList<Cita>,scrollView,layautVertical, bundle)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -124,7 +123,12 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     }
 
 
-    private fun showCitas(citas: MutableList<Cita>, scrollView: ScrollView, layout: LinearLayout) {
+    private fun showCitas(
+        citas: MutableList<Cita>,
+        scrollView: ScrollView,
+        layout: LinearLayout,
+        bundle: Bundle?
+    ) {
             layout.removeAllViews()
 
             val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
@@ -146,7 +150,7 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 iconX.id = cita.id.toString().toInt()
                 iconX.setOnClickListener(){
                     val indexid = it.id
-                    registrarCita(indexid, citas, scrollView,layout);
+                    registrarCita(indexid, citas, scrollView,layout, bundle);
                 }
 
                 linearLayout.addView(iconX)
@@ -180,7 +184,13 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         }
 
-    private fun registrarCita(indexid: Int, citas: MutableList<Cita>, scrollView: ScrollView, layout: LinearLayout) {
+    private fun registrarCita(
+        indexid: Int,
+        citas: MutableList<Cita>,
+        scrollView: ScrollView,
+        layout: LinearLayout,
+        bundle: Bundle?
+    ) {
         var citaUpdate = Cita()
         for (cita : Cita in citas){
             if(cita.id.equals(indexid.toString())){
@@ -193,6 +203,10 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         refCitas.child(citaUpdate.id).setValue(citaUpdate)
         Toast.makeText(this,"Cita registrada con exito",Toast.LENGTH_LONG).show()
         recreate()
+        val intentPsicology = Intent(this, Psicology::class.java)
+        if (bundle != null) {
+            intentPsicology.putExtras(bundle)
+        }
         startActivity(intentPsicology)
     }
 
