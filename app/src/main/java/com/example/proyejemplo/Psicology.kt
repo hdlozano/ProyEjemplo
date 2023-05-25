@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
 
 class Psicology : AppCompatActivity() {
     @SuppressLint("WrongViewCast", "MissingInflatedId")
@@ -30,6 +31,15 @@ class Psicology : AppCompatActivity() {
         btnLogout.backgroundTintList=colorStateList
         btnNotice.backgroundTintList=colorStateList
 
+        btnLogout.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,MainActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
         val btnCitas : ImageView = findViewById(R.id.citas)
         val btnCitasProg : ImageView = findViewById(R.id.citasProg)
 

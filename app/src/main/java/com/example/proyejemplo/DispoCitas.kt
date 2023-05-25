@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.ImageButton
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import com.example.proyejemplo.model.Cita
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -64,6 +66,16 @@ class DispoCitas : AppCompatActivity() {
         btnInicio.backgroundTintList=colorStateList
         btnLogout.backgroundTintList=colorStateList
         btnNotice.backgroundTintList=colorStateList
+
+        btnLogout.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,MainActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
         val citas = mutableListOf<Cita>()
         val btnMas : ImageButton = findViewById(R.id.masDispo)
         val btnSave : ImageButton = findViewById(R.id.salvar)

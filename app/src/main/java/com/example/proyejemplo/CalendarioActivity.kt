@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.example.proyejemplo.model.Cita
 import com.example.proyejemplo.model.Usuario
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -26,7 +26,7 @@ import com.google.firebase.ktx.Firebase
 class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private val db = FirebaseDatabase.getInstance()
     var idUser : Int = 0
-    val intentPsicology = Intent(this, Psicology::class.java)
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -48,6 +48,16 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         btnInicio.backgroundTintList=colorStateList
         btnLogout.backgroundTintList=colorStateList
         btnNotice.backgroundTintList=colorStateList
+
+        btnLogout.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,MainActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
 
         val spinerPsicologos : Spinner = findViewById(R.id.spinner)
 
@@ -101,7 +111,7 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 val idpsicologo = psicologos.filter { it.nombre.equals(selectedItem) }
                 val citasFiltradas = citas.filter { it.idPsicologo.equals(idpsicologo.get(0).id.toString()) }
 
-                showCitas(citasFiltradas as MutableList<Cita>,scrollView,layautVertical)
+                showCitas(citasFiltradas as MutableList<Cita>,scrollView,layautVertical, bundle)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -113,7 +123,12 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     }
 
 
-    private fun showCitas(citas: MutableList<Cita>, scrollView: ScrollView, layout: LinearLayout) {
+    private fun showCitas(
+        citas: MutableList<Cita>,
+        scrollView: ScrollView,
+        layout: LinearLayout,
+        bundle: Bundle?
+    ) {
             layout.removeAllViews()
 
             val colorStateList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.blue_500))
@@ -135,7 +150,7 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 iconX.id = cita.id.toString().toInt()
                 iconX.setOnClickListener(){
                     val indexid = it.id
-                    registrarCita(indexid, citas, scrollView,layout);
+                    registrarCita(indexid, citas, scrollView,layout, bundle);
                 }
 
                 linearLayout.addView(iconX)
@@ -169,7 +184,13 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         }
 
-    private fun registrarCita(indexid: Int, citas: MutableList<Cita>, scrollView: ScrollView, layout: LinearLayout) {
+    private fun registrarCita(
+        indexid: Int,
+        citas: MutableList<Cita>,
+        scrollView: ScrollView,
+        layout: LinearLayout,
+        bundle: Bundle?
+    ) {
         var citaUpdate = Cita()
         for (cita : Cita in citas){
             if(cita.id.equals(indexid.toString())){
@@ -182,7 +203,11 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
         refCitas.child(citaUpdate.id).setValue(citaUpdate)
         Toast.makeText(this,"Cita registrada con exito",Toast.LENGTH_LONG).show()
         recreate()
-        //startActivity(intentPsicology)
+        val intentPsicology = Intent(this, Psicology::class.java)
+        if (bundle != null) {
+            intentPsicology.putExtras(bundle)
+        }
+        startActivity(intentPsicology)
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

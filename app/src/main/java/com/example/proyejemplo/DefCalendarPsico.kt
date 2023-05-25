@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 
 class DefCalendarPsico : AppCompatActivity() {
@@ -32,6 +33,16 @@ class DefCalendarPsico : AppCompatActivity() {
         btnInicio.backgroundTintList=colorStateList
         btnLogout.backgroundTintList=colorStateList
         btnNotice.backgroundTintList=colorStateList
+
+        btnLogout.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,MainActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
 
         val btnCita : ImageView = findViewById(R.id.citas)
         val btnCitasPro : ImageView = findViewById(R.id.citasProg)
