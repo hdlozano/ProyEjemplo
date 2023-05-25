@@ -16,6 +16,7 @@ import com.example.proyejemplo.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -66,7 +67,7 @@ class CitasProg : AppCompatActivity() {
                         usuarios.add(usuario)
                     }
                 }
-                cargarCitas(usuarios, layautVertical)
+                cargarCitas(usuarios, layautVertical,bundle)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -76,7 +77,11 @@ class CitasProg : AppCompatActivity() {
         //showCitas(citas as MutableLis,scrollView,layautVertical, citas, usuarios)
     }
 
-    private fun cargarCitas(usuarios: ArrayList<Usuario>, layautVertical: LinearLayout) {
+    private fun cargarCitas(
+        usuarios: ArrayList<Usuario>,
+        layautVertical: LinearLayout,
+        bundle: Bundle?
+    ) {
         val citas = ArrayList<Cita>()
         val query = Firebase.database.reference.child("Citas")
         query.addListenerForSingleValueEvent(object : ValueEventListener{
@@ -87,7 +92,7 @@ class CitasProg : AppCompatActivity() {
                         citas.add(cita)
                     }
                 }
-                showCitas(citas,layautVertical,usuarios)
+                showCitas(citas,layautVertical,usuarios,bundle)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -107,7 +112,8 @@ class CitasProg : AppCompatActivity() {
     private fun showCitas(
         citas: MutableList<Cita>,
         layout: LinearLayout,
-        usuarios: ArrayList<Usuario>
+        usuarios: ArrayList<Usuario>,
+        bundle: Bundle?
     ) {
         //showMesageSuccessfu("Numero de citas ${citas.size}")
         //showMesageSuccessfu("Numero de usuarios ${usuarios.size}")
@@ -129,7 +135,7 @@ class CitasProg : AppCompatActivity() {
                 linearLayout.orientation = LinearLayout.HORIZONTAL
 
                 val textView = TextView(this)
-
+                val iconX = ImageButton(this)
                 if (userS.profesion.equals("Psicólogo")) {
                     val nombreUsuario =
                         usuarios.filter { it.id == cita.idEstudiante.toString().toInt() }
@@ -145,21 +151,24 @@ class CitasProg : AppCompatActivity() {
                         "# ${cita.id} \n Programada: ${cita.fechaHora} \n Con el doctor:\n ${
                             nombreUsuario.get(0).nombre
                         }"
+                    iconX.setImageResource(R.drawable.botonx_32)
+                    iconX.backgroundTintList = colorStateList
+                    iconX.id = cita.id.toString().toInt()
+                    iconX.setOnClickListener() {
+                        val indexid = it.id
+                        cancelCita(citas,layout, indexid,bundle)
+                        //registrarCita(indexid, citas, scrollView,layout);
+                    }
+
+                    linearLayout.addView(iconX)
                 }
 
                 textView.textSize = 20F
                 textView.setTextColor(ContextCompat.getColor(this, R.color.white))
                 linearLayout.addView(textView)
-                val iconX = ImageButton(this)
-                iconX.setImageResource(R.drawable.cheque_32)
-                iconX.backgroundTintList = colorStateList
-                iconX.id = cita.id.toString().toInt()
-                iconX.setOnClickListener() {
-                    val indexid = it.id
-                    //registrarCita(indexid, citas, scrollView,layout);
-                }
 
-                linearLayout.addView(iconX)
+
+
                 val layoutParams1 = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
@@ -191,6 +200,34 @@ class CitasProg : AppCompatActivity() {
         }else{
             showMesageSuccessfu("No tiene citas programadas")
         }
+    }
+
+    private fun cancelCita(
+        citas: MutableList<Cita>,
+        layout: LinearLayout,
+        indexid: Int,
+        bundle: Bundle?
+    ) {
+        val db = FirebaseDatabase.getInstance()
+        val refcitas = db.getReference("Citas")
+        for (cita: Cita in citas){
+            if(cita.id.equals(indexid.toString())){
+                cita.setIdEstudianteCita("")
+                cita.setDisponibleFlag(true)
+                refcitas.child(cita.id). setValue(cita)
+            }
+
+        }
+        val msn = "Cita cancelada"
+        //showMesageSuccessfu(msn)
+
+        val intentpisologi = Intent(this, Psicology::class.java)
+        if (bundle != null) {
+            intentpisologi.putExtras(bundle)
+        }
+        Toast.makeText(this,"Cita cancelada",Toast.LENGTH_LONG)
+        startActivity(intentpisologi)
+        //Toast.makeText(this,"Cita cancelada",Toast.LENGTH_LONG)
     }
 
     private fun showMesageSuccessfu(msn: String) {
