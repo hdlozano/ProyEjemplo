@@ -3,6 +3,7 @@ package com.example.proyejemplo
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
@@ -56,6 +57,26 @@ class CitasProg : AppCompatActivity() {
             }
             startActivity(intentMain)
         }
+        btnInicio.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,HomeActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
+        btnNotice.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val url = "https://www.jdc.edu.co/bienestar/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (bundle != null) {
+                intent.putExtras(bundle)
+            }
+            startActivity(intent)
+        }
+
 
         val usuarios = ArrayList<Usuario>()
         var query = Firebase.database.reference.child("Usuario")

@@ -3,6 +3,7 @@ package com.example.proyejemplo
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -57,6 +58,25 @@ class CalendarioActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
                 intentMain.putExtras(bundle)
             }
             startActivity(intentMain)
+        }
+        btnInicio.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,HomeActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
+        btnNotice.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val url = "https://www.jdc.edu.co/bienestar/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (bundle != null) {
+                intent.putExtras(bundle)
+            }
+            startActivity(intent)
         }
 
         val spinerPsicologos : Spinner = findViewById(R.id.spinner)

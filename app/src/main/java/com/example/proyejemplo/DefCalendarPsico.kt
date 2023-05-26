@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -42,6 +43,25 @@ class DefCalendarPsico : AppCompatActivity() {
                 intentMain.putExtras(bundle)
             }
             startActivity(intentMain)
+        }
+        btnInicio.setOnClickListener(){
+            FirebaseAuth.getInstance().signOut()
+            val intentMain = Intent(this,HomeActivity::class.java)
+            intentMain.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (bundle != null) {
+                intentMain.putExtras(bundle)
+            }
+            startActivity(intentMain)
+        }
+        btnNotice.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val url = "https://www.jdc.edu.co/bienestar/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (bundle != null) {
+                intent.putExtras(bundle)
+            }
+            startActivity(intent)
         }
 
         val btnCita : ImageView = findViewById(R.id.citas)
