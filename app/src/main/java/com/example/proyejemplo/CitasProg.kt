@@ -68,7 +68,7 @@ class CitasProg : AppCompatActivity() {
         }
         btnNotice.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val url = "https://www.jdc.edu.co/bienestar/"
+            val url = "https://www.jdc.edu.co/noticias"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             if (bundle != null) {

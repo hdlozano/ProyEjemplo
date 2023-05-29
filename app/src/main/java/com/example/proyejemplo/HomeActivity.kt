@@ -3,6 +3,7 @@ package com.example.proyejemplo
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -45,6 +46,16 @@ class HomeActivity : AppCompatActivity() {
         btnInicio.setOnClickListener(){
 
 
+        }
+        btnNotice.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val url = "https://www.jdc.edu.co/noticias"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            if (bundle != null) {
+                intent.putExtras(bundle)
+            }
+            startActivity(intent)
         }
         btnPsicology.setOnClickListener(){
             psycologyProces(bundle)
